@@ -185,13 +185,16 @@ async function startRecording() {
       soundNameInput.value = '';
       renderSounds();
       cleanupRecorder();
-      micStatus.textContent = 'Opname opgeslagen';
+      micStatus.innerHTML = '<span class="dot"></span> Opname opgeslagen';
+      micStatus.classList.remove('active');
     };
 
     mediaRecorder.start();
     recordBtn.disabled = true;
+    recordBtn.classList.add('is-recording');
     stopBtn.disabled = false;
-    micStatus.textContent = 'Bezig met opnemen...';
+    micStatus.innerHTML = '<span class="dot"></span> Bezig met opnemen...';
+    micStatus.classList.add('active');
   } catch (err) {
     console.error(err);
     alert('Microfoon openen mislukte. Geef toegang in Safari-instellingen en probeer opnieuw.');
@@ -206,7 +209,9 @@ function cleanupRecorder() {
   mediaRecorder = null;
   currentChunks = [];
   recordBtn.disabled = false;
+  recordBtn.classList.remove('is-recording');
   stopBtn.disabled = true;
+  micStatus.classList.remove('active');
 }
 
 function stopRecording() {
