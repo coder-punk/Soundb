@@ -41,9 +41,7 @@
     <main>
       <section class="panel recorder-panel">
         <div class="status-row">
-          <span id="micStatus" class="badge ghost">
-            Microfoon niet actief
-          </span>
+          <span id="micStatus" class="badge ghost">Microfoon niet actief</span>
           <span id="countStatus" class="badge ghost">0 sounds</span>
         </div>
 
@@ -88,36 +86,50 @@
 
   <template id="soundCardTemplate">
     <article class="sound-card">
-      <div class="sound-card-top">
+      <div class="card-top">
+        <span class="card-play-icon" aria-hidden="true">
+          <!-- play icon -->
+          <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="6 3 20 12 6 21 6 3"/>
+          </svg>
+          <!-- pause icon -->
+          <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="6" y="4" width="4" height="16" rx="1"/>
+            <rect x="14" y="4" width="4" height="16" rx="1"/>
+          </svg>
+        </span>
+        <div class="card-actions">
+          <button class="icon-btn loop-btn" title="Loop" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+            </svg>
+          </button>
+          <button class="icon-btn download-btn" title="Bewaar" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+          </button>
+          <button class="icon-btn delete-btn" title="Verwijder" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="card-body">
         <input class="sound-title" type="text" maxlength="40" />
-        <span class="sound-meta"></span>
       </div>
-      <div class="sound-actions">
-        <button class="play-btn primary" type="button">
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <polygon points="5 3 19 12 5 21 5 3"/>
-          </svg>
-          Afspelen
-        </button>
-        <button class="stop-play-btn secondary" type="button">
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <rect x="5" y="5" width="14" height="14" rx="2"/>
-          </svg>
-          Stop
-        </button>
-        <button class="download-btn secondary" type="button">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
-          </svg>
-          Bewaar
-        </button>
-        <button class="delete-btn danger" type="button">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/>
-          </svg>
-          Verwijder
-        </button>
+
+      <div class="card-footer">
+        <span class="time-elapsed">00:00</span>
+        <span class="time-remaining">-00:00</span>
       </div>
+
+      <div class="card-progress">
+        <div class="card-progress-bar"></div>
+      </div>
+
       <audio preload="metadata"></audio>
     </article>
   </template>
